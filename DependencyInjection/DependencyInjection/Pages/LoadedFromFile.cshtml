@@ -4,7 +4,19 @@
     ViewData["Title"] = "Loaded From File";
 }
 
-@foreach(var product in Model.Products)
-            {
-                <h1>@product.Title</h1>
-            }
+<div class="card-columns">
+    @foreach (var product in Model.Products)
+    {
+        <div class="card">
+            <div class="card-img" style="background-image: url('@product.Image');">
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">@product.Title</h5>
+                <h6 class="card-text">Maker: @product.Maker</h6>
+                <h6 class="card-text">Description: @product.Description</h6>
+                <h6 class="card-link">Click <a href="@product.Url">here</a></h6>
+            </div>
+        </div>
+    }
+</div>
