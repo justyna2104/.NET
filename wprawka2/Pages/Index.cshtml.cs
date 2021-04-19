@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using wprawka2.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+
 
 namespace wprawka2.Pages
 {
@@ -17,7 +20,8 @@ namespace wprawka2.Pages
         public string Name { get; set; }
 
         [BindProperty]
-        public Address Address { get; set; }
+        public Address Address { get; set; } 
+        
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -37,7 +41,8 @@ namespace wprawka2.Pages
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                HttpContext.Session.SetString("SessionAddress",JsonConvert.SerializeObject(Address));
+                return RedirectToPage("./AddressList");
             }
             return RedirectToPage("./Privacy");
         }

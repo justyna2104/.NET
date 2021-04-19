@@ -1,0 +1,10 @@
+﻿@page
+@model DependencyInjection.Pages.LoadedFromFileModel
+@{
+    ViewData["Title"] = "Loaded From File";
+}
+
+@foreach(var product in Model.Products)
+            {
+                <h1>@product.Title</h1>
+            }
